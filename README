@@ -1,0 +1,83 @@
+===================
+CSL707 ASSIGNMENT-3
+===================
+
+By Gaurav Mittal, Rahul Mittal and Kaushal Yagnik
+-------------------------------------------------
+
+(Please enable text wrapping in the editor, if not done automatically)
+
+-------------------
+PROBLEM DESCRIPTION
+-------------------
+
+To build an application which automate the tracking of prices of all products which are sold on a particular e-stores allowing users to analyze the trend in the prices and make some profitable decisions based on them.
+
+-------------------
+APPLICATION SUMMARY
+-------------------
+
+The application is essentially a crawler which on providing a start URL and a particular depth traverses the website (Amazon.in) searching for products and scraping their corresponding webpages for the following details:
+
+	* Product Name and Description
+	* Product’s unique URL
+	* Product’s Price
+	* Rating
+	* Number of Reviews
+
+After collecting the necessary details, they are dumped into a database collection to be used later for observing price trends through graphs and performing specific web scraping based on URLs collected.
+
+Finally, the client interface provides the user to analyze the price trends by specifying the product URL of the product and obtain a graph of the prices recorded over the various times the webpage is crawled by the application.
+
+-------------------
+SYSTEM REQUIREMENTS
+-------------------
+
+1. Python 2.7
+2. Scrapy Framework (sudo pip install scrapy)
+3. MongoDB
+4. pyMongo (sudo pip install pymongo)
+5. PHP
+6. MongoDB PHP Driver (http://php.net/manual/en/mongo.installation.php)
+
+--------
+CONTENTS
+--------
+
+1. src folder
+	i. aragog - Contains crawler to scrape/parse and collect data
+	ii. web - Contains files related to the client side interface
+
+2. README - Document explaining the system requirements and how to run the application.
+
+3. Design Document - Document explaining the design of the solution.
+
+4. dbDump - File containing the dump of the database.
+
+
+----------
+HOW TO RUN
+----------
+
+1. First of all, make sure all the requirement are met by installing all the required softwares along with their dependencies.
+
+2. To run the crawler to crawl the entire website starting from a particular URL and upto a particular depth, go inside the src/aragog directory and run the following command:
+
+$ scrapy crawl aragog -s DEPTH_LIMIT=<depth> -a start_url='<start-url'> -o <json-dump file> -t json
+
+for eg. 
+
+$ scrapy crawl aragog -s DEPTH_LIMIT=2 -a start_url='http://www.amazon.in/gp/site-directory/ref=nav_sad' -o amazon.json -t json
+
+(all -s , -a , -o and -t are option, -o and -t are for dumping json, -s to specify setting like here specifying depth of crawling and -a to specify argument like here specifying starting url for crawling)
+
+3. If the database already contains URLs, you can run the crawler aragogUpdate to scrape specific webpages related to the URLs in the database and add new prices with timestamps of the products. For that go inside src/aragog directory and run the following:
+
+$ scrapy crawl aragogUpdate
+
+4. Place the web folder inside localhost to host the web interface.
+
+5. Go to the localhost from the browser to start using the web interface.
+
+6. There you can provide the URL of a product from the website and on submitting the form obtain the graph showing the prices of the product at various points in time.
+
