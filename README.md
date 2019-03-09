@@ -1,9 +1,9 @@
 AMAZON PRICE TRACKER
 ====================
 
-###By Gaurav Mittal, Rahul Mittal and Kaushal Yagnik  
+### By Gaurav Mittal, Rahul Mittal and Kaushal Yagnik  
 
-####CSL707 ASSIGNMENT-3
+#### CSL707 ASSIGNMENT-3
 
 PROBLEM DESCRIPTION
 -------------------
